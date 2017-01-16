@@ -1,6 +1,9 @@
 # coding: utf-8
 
-from django.http import HttpResponse
+# from django.http import HttpResponse
+# from django.template.loader import get_template
+# from django import template
+from django.shortcuts import render_to_response
 
 def hello(request):
     print request
@@ -11,7 +14,7 @@ def add(request, a, b):
     sum = int(a) + int(b)
     return HttpResponse('sum of {0} and {1} is {2}'.format(a, b, sum))
 
-def match(request, a, b):
+def math(request, a, b):
     print request
     a = float(a)
     b = float(b)
@@ -19,12 +22,11 @@ def match(request, a, b):
     d = a - b
     p = a * b
     q = a / b
-    html = '''
-            <html>
-                sum = {s}<br>
-                dif = {d}<br>
-                pro = {p}<br>
-                quo = {q}<br>
-            </html>
-           '''.format(s=s, d=d, p=p, q=q)
-    return HttpResponse(html)
+
+    # t = get_template('math.html')
+    # c = template.Context({'s': s, 'd': d, 'p': p, 'q': q})
+    # return HttpResponse(t.render(c))
+    local_dict = locals()
+    print local_dict
+
+    return render_to_response('math.html', locals())
