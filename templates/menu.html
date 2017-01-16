@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title> Menu </title>
+    <meta charset='utf-8'>
+  </head>
+  <body>
+    <p> 本餐廳共有 {{ foods|length }} 道食物 </p>
+    {% for food in foods reversed %}
+      <h3> 第 {{ forloop.counter }} 道餐點 </h3>
+      <ul>
+        {% comment %}
+          這裡都是註解喔
+          你應該看不到我吧
+          是吧？
+          是吧？
+          是吧是吧是吧？
+        {% endcomment %}
+        <li> 食物的名字是：{{food.name}} </li>
+        <li> 食物的價格是：{{food.price}} </li>
+        <li> 食物的說明是：{{food.comment}} </li>
+        <li> 食物的味道是：
+          {% if food.is_sour %}
+            酸
+          {% elif food.is_sweet %}
+            甜
+          {% elif food.is_bitter %}
+            苦
+          {% elif food.is_spicy %}
+            辣
+          {% else %}
+            沒味道
+          {% endif %}
+        </li>
+      </ul>
+    {% empty %}
+      <p> 嗚嗚嗚，都賣光光啦 Q_Q </p>
+    {% endfor %}
+  </body>
+</html>

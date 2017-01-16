@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django_site.views import hello, add, math
+from django_site.views import hello, add, math, menu
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^hello/$', hello),
     url(r'^(\d{1,2})/plus/(\d{1,2})/$', add),
     url(r'^(\d{1,2})/math/(\d{1,2})/$', math),
+    url(r'^menu/$', menu),
 ]
